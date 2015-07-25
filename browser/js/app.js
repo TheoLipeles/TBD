@@ -16,6 +16,11 @@ app.config(function ($urlRouterProvider, $locationProvider, $stateProvider) {
         url: '/rooms/:roomName',
         templateUrl: 'js/joinRooms/joinRooms.html', 
         controller: 'JoinRoomCtrl'
+    })
+    .state('solo', {
+        url:'/solo',
+        templateUrl:'js/soloist/solo.html',
+        controller: 'soloCtrl'
     });
 });
 
