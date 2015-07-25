@@ -10,16 +10,18 @@
 	<button ng-click="stop()">stop</button>
 	<button ng-click="init()">init</button>
 <!-- 	<pre id="default-spacing">{{ boxes | json}}</pre> -->
-	<select ng-options="osc as osc for osc in oscTypes" ng-model="synth.oscillator.type" ng-change="updateSynth()"></select>
-	<select ng-options="flt as flt for flt in fltTypes" ng-model="synth.filter.type" ng-change="updateSynth()"></select>
-	<select ng-options="roll as roll for roll in rollOff" ng-model="synth.filter.rolloff" ng-change="updateSynth()"></select>
+	<div class=>
+		<select ng-options="osc as osc for osc in oscTypes" ng-model="synth.oscillator.type" ng-change="updateSynth()"></select>
+		<select ng-options="flt as flt for flt in fltTypes" ng-model="synth.filter.type" ng-change="updateSynth()"></select>
+		<select ng-options="roll as roll for roll in rollOff" ng-model="synth.filter.rolloff" ng-change="updateSynth()"></select>
 
-	<input type="number" min="0" max="1000" ng-model="uiEnvelope.attack" ng-change="updateEnv('attack')">Attack
-	<input type="number" min="0" max="1000" ng-model="uiEnvelope.decay" ng-change="updateEnv('decay')">Decay
-	<input type="number" min="0" max="1000" ng-model="uiEnvelope.sustain" ng-change="updateEnv('sustain')">Sustain
-	<input type="number" min="0" max="1000" ng-model="uiEnvelope.release" ng-change="updateEnv('release')">Release
+		Attack<input type="number" min="0" max="1000" ng-model="uiEnvelope.attack" ng-change="updateEnv('attack')">
+		Decay<input type="number" min="0" max="1000" ng-model="uiEnvelope.decay" ng-change="updateEnv('decay')">
+		Sustain<input type="number" min="0" max="1000" ng-model="uiEnvelope.sustain" ng-change="updateEnv('sustain')">
+		Release<input type="number" min="0" max="1000" ng-model="uiEnvelope.release" ng-change="updateEnv('release')">
 
-	<input type="number" min="0" max="1000" ng-model="pingPong" ng-change="updateWet('pingPong')">Effects
+		Effects<input type="number" min="0" max="1000" ng-model="pingPong" ng-change="updateWet('pingPong')">
+	</div>
 
 	<!-- <pre id="default-spacing">{{ boxes | json}}</pre> -->
 </div>
