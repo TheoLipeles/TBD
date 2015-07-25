@@ -14,12 +14,12 @@
 	<select ng-options="flt as flt for flt in fltTypes" ng-model="synth.filter.type" ng-change="updateSynth()"></select>
 	<select ng-options="roll as roll for roll in rollOff" ng-model="synth.filter.rolloff" ng-change="updateSynth()"></select>
 
-	<input type="number" min="0" max="1000" ng-model="uiEnvelope.attack" ng-change="updateEnv('attack')">
-	<input type="number" min="0" max="1000" ng-model="uiEnvelope.decay" ng-change="updateEnv('decay')">
-	<input type="number" min="0" max="1000" ng-model="uiEnvelope.sustain" ng-change="updateEnv('sustain')">
-	<input type="number" min="0" max="1000" ng-model="uiEnvelope.release" ng-change="updateEnv('release')">
+	<input type="number" min="0" max="1000" ng-model="uiEnvelope.attack" ng-change="updateEnv('attack')">Attack
+	<input type="number" min="0" max="1000" ng-model="uiEnvelope.decay" ng-change="updateEnv('decay')">Decay
+	<input type="number" min="0" max="1000" ng-model="uiEnvelope.sustain" ng-change="updateEnv('sustain')">Sustain
+	<input type="number" min="0" max="1000" ng-model="uiEnvelope.release" ng-change="updateEnv('release')">Release
 
-	<input type="number" min="0" max="1000" ng-model="pingPong" ng-change="updateWet('pingPong')">
+	<input type="number" min="0" max="1000" ng-model="pingPong" ng-change="updateWet('pingPong')">Effects
 
 	<!-- <pre id="default-spacing">{{ boxes | json}}</pre> -->
 </div>

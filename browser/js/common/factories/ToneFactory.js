@@ -11,10 +11,8 @@ app.factory('SequenceFactory', function () {
 	pingPong.connect(chorus);
 
 	var nTon = {
-		13:"C0",
-		12:"D0",
-		11:"E0",
-		10:"G0",
+		11:"G1",
+		10:"A8",
 		9: "A2",
 		8: "C3",
 		7: "D3",
@@ -26,6 +24,7 @@ app.factory('SequenceFactory', function () {
 		1: "E4",
 		0: "G4"
 	}
+
 	function mapNumberToNote (n) {
 		return nTon[n];
 	}
@@ -35,6 +34,7 @@ app.factory('SequenceFactory', function () {
 			//loop Transport
 			Tone.Transport.loopEnd = "4:0:0";
 			Tone.Transport.loop = true;
+			Tone.Transport.bpm.value = 200;
 
 			//set interval to loop over every quarternote and play correct sounds
 			Tone.Transport.setInterval(function () {
