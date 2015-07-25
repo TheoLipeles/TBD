@@ -12,18 +12,34 @@
   }
   .aRoom {
     display: inline;
+    color: white;
     margin: 3px;
     cursor: pointer;
     width: 60px;
     padding: 5px;
-    border: 3px solid darkgrey;
+    border: 3px solid white;
     border-radius: 5px
   }
   .aRoom:hover{
     border: 3px solid red;
   }
   .roomNameLink{
+    color: white;
     text-decoration: none;
   }
+
+  #header{
+    z-index: -1;
+    position: absolute;
+    top: 0px;
+    margin-left: -20px;
+    width: 100vw;
+  }
+  #buttons{
+    position: absolute;
+    top: 30vw;
+    left: 3vw;
+  }
+
 }
 
