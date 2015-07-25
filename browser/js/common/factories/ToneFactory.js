@@ -1,8 +1,9 @@
-app.factory('SequenceFactory', function () {
+
+app.factory('SequenceFactory', function (HomeFactory, $stateParams) {
 	var sequence = new Array(16);
-	for(var i = sequence.length - 1; i >= 0; i --) {
-		sequence[i] = [];
-	}
+	HomeFactory.joinRoom($stateParams.roomName).then(function(room) {
+		sequence = room.sequence;
+	});
 	var poly = new Tone.PolySynth(6, Tone.MonoSynth);
 
 	var pingPong = new Tone.PingPongDelay('1m', 0.2);
@@ -23,7 +24,7 @@ app.factory('SequenceFactory', function () {
 		2: "D4",
 		1: "E4",
 		0: "G4"
-	}
+	};
 
 	function mapNumberToNote (n) {
 		return nTon[n];
@@ -46,8 +47,10 @@ app.factory('SequenceFactory', function () {
 				if(prevIndex === -1) {
 					prevIndex = 15;
 				}
+
 				//update DOM
 				document.getElementById(prevIndex).classList.remove('live');
+				var prevEl = document.getElementById(arrIndex);
 				document.getElementById(arrIndex).classList.add('live');
 				//play the array of notes at the correct index of sequence
 				// poly.triggerRelease(sequence[prevIndex]);
@@ -59,7 +62,11 @@ app.factory('SequenceFactory', function () {
 			return poly;
 		},
 		addNoteToSequence: function(seqIndex, noteNum) {
-			sequence[seqIndex].push(mapNumberToNote(noteNum));
+			var note = mapNumberToNote(noteNum);
+			console.log(seqIndex);
+			seqIndex = parseInt(seqIndex);
+			console.log(typeof(seqIndex), seqIndex);
+			sequence[seqIndex].push(note);
 		},
 		removeNoteFromSequence: function (seqIndex, noteNum) {
 			for(var i = 0; i < sequence[seqIndex].length; i++) {
@@ -81,8 +88,14 @@ app.factory('SequenceFactory', function () {
 		},
 		effectsWetness: function(effect, value) {
 			if(effect === "pingPong") {
-				pingPong.wet.value = value;
+				pingPong.wet.value = 0;
 			}
+		},
+		syncSequence: function(sequence) {
+			Tone.sequence = sequence;
+		},
+		mapNumberToNote: function(n) {
+			return mapNumberToNote(n);
 		}
-	}
+	};
 });
