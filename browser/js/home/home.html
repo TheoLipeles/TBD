@@ -4,6 +4,7 @@
 <!-- 	<button class="room-choice" ui-sref="createRoom">Create Room</button> -->
 	<div>
 		<div ng-repeat="room in rooms" ui-sref="joinRoom({roomName: room.name})" class="aRoom"><a class="roomNameLink">{{room.name}}</a></div>
+		<div ui-sref="solo" class="aRoom">Solo</div>
 	</div>
 </section>
 	
