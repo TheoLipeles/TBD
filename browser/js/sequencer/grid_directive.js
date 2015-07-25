@@ -29,7 +29,7 @@ app.controller('sequencerCtrl', function($scope, boxFactory,$interval){
 			// console.log($scope.boxes)
 			var y = 0
 			var timer = $interval(function(){
-				y++
+				++y
 				for (var x = 0; x < 10; x++){
 					if (y===16){
 						console.log("hey, listen!")
@@ -58,7 +58,7 @@ app.directive('noteBox', function(boxFactory){
 		link: function(scope,elem,attr){
 			scope.toggleActive = boxFactory.toggleActive;
 		},
-		template: "<div class='noteBox' ng-click='toggleActive()'>{{box.id}}</br>P:{{box.playing}}</div>"
+		template: "<div class='noteBox' ng-click='toggleActive()'>{{box.id}}</br>P:{{box.playing}}</br>A:{{box.active}}</div>"
 	}
 });
 
