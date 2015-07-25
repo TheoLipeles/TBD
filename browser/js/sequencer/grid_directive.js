@@ -99,9 +99,9 @@
 // });
 
 
-// app.directive('sequencer', function(){
-// 	return {
-// 		restrict:'E',
-// 		templateUrl: 'js/sequencer/grid.html'
-// 	};
-// });
+app.directive('sequencer', function(){
+	return {
+		restrict:'E',
+		templateUrl: 'js/sequencer/grid.html'
+	};
+});
