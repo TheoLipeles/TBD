@@ -1,0 +1,11 @@
+<div ng-controller="sequencerCtrl">
+	<div class="container">
+		<div class="innercontainer">
+			<div ng-repeat="column in boxes" id="{{$index}}" class="column">
+				<note-box ng-repeat="box in column"></note-box></div>
+			</div>
+		</div>
+	</div>
+	<button ng-click="play()">play</button>
+	<pre id="default-spacing">{{ boxes | json}}</pre>
+</div>
