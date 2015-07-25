@@ -10,5 +10,20 @@
   	color: red;
   	display: block;
   }
+  .aRoom {
+    display: inline;
+    margin: 3px;
+    cursor: pointer;
+    width: 60px;
+    padding: 5px;
+    border: 3px solid darkgrey;
+    border-radius: 5px
+  }
+  .aRoom:hover{
+    border: 3px solid red;
+  }
+  .roomNameLink{
+    text-decoration: none;
+  }
 }
 
