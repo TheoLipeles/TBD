@@ -34,9 +34,14 @@ app.factory('SequenceFactory', function () {
 				//get position to figure out what sub Array to play
 				var pArr = Tone.Transport.position.split(':');
 				var arrIndex = (parseInt(pArr[0])*4) + (parseInt(pArr[1]));
+				var prevIndex = arrIndex - 1;
 				//add class
-				document.getElementById(arrIndex - 1).removeClass('live');
-				document.getElementById(arrIndex).addClass('live');
+				if(!prevIndex) {
+					prevIndex = 15;
+				}
+				var prevEl = document.getElementById(arrIndex)
+				document.getElementById(prevIndex).classList.remove('live');
+				document.getElementById(arrIndex).classList.add('live');
 				//play the array of notes at the correct index of sequence
 				poly.triggerAttackRelease(sequence[arrIndex], "4n");
 				console.log(Tone.Transport.position, sequence[arrIndex]);
