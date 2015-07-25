@@ -1,24 +1,14 @@
-app.factory('SequenceFactory', function () {
+app.factory('DrumFactory', function () {
 	var sequence = new Array(16);
 	for(var i = sequence.length - 1; i >= 0; i --) {
 		sequence[i] = [];
 	}
 	console.log(sequence);
 	var nTon = {
-		13:"C0",
-		12:"D0",
-		11:"E0",
-		10:"G0",
-		9: "A2",
-		8: "C3",
-		7: "D3",
-		6: "E3",
-		5: "G3",
-		4: "A3",
-		3: "C4",
-		2: "D4",
-		1: "E4",
-		0: "G4"
+		3: "G4",
+		2: "E4",
+		1: "D4",
+		0: "C4"
 	}
 	function mapNumberToNote (n) {
 		return nTon[n];
@@ -31,7 +21,7 @@ app.factory('SequenceFactory', function () {
 			Tone.Transport.loop = true;
 
 			//create polysynth
-			var poly = new Tone.PolySynth(6, Tone.MonoSynth).toMaster();
+			var drum = new Tone.DrumSynth().toMaster();
 
 			//set interval to loop over every quarternote and play correct sounds
 			Tone.Transport.setInterval(function () {
@@ -47,11 +37,11 @@ app.factory('SequenceFactory', function () {
 				document.getElementById(prevIndex).classList.remove('live');
 				document.getElementById(arrIndex).classList.add('live');
 				//play the array of notes at the correct index of sequence
-				poly.triggerAttackRelease(sequence[arrIndex], "4n");
+				drum.triggerAttackRelease(sequence[arrIndex], "4n");
 				console.log(Tone.Transport.position, sequence[arrIndex]);
 			}, "4n");
 
-			return poly;
+			return drum;
 		},
 		addNoteToSequence: function(seqIndex, noteNum) {
 			sequence[seqIndex].push(mapNumberToNote(noteNum));

@@ -25,7 +25,7 @@ app.controller('sequencerCtrl', function($scope, boxFactory,$interval, SequenceF
 	$scope.boxes = [];
 	for(var i = 0; i < 16; i++){
 		$scope.boxes[i] = [];
-		for (var j = 0; j < 10; j++){
+		for (var j = 0; j < 14; j++){
 			$scope.boxes[i].push({id: [i,j], active: false, playing: false})
 		}
 	}
@@ -39,29 +39,6 @@ app.controller('sequencerCtrl', function($scope, boxFactory,$interval, SequenceF
 	$scope.stop = function () {
 		SequenceFactory.stopSequence();
 	}
-	// $scope.play = function(){
-	// 		// console.log($scope.boxes)
-	// 		var y = 0
-	// 		var timer = $interval(function(){
-	// 			++y
-	// 			for (var x = 0; x < 10; x++){
-	// 				if (y===16){
-	// 					console.log("hey, listen!")
-	// 					y = 0;
-	// 				}
-	// 				console.log("y=",y)
-	// 				// console.log(y,x)
-	// 				$scope.boxes[y][x].playing = true;
-
-	// 				if ($scope.boxes[y-1][x]){
-	// 					$scope.boxes[y-1][x].playing = false;
-	// 				};
-
-					
-				
-	// 			}
-	// 		},200)
-	// 	}
 	
 	$scope.toggleActive = boxFactory.toggleActive
 });
