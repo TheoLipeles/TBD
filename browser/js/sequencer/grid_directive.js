@@ -72,7 +72,7 @@ app.directive('noteBox', function(boxFactory){
 		link: function(scope,elem,attr){
 			scope.toggleActive = boxFactory.toggleActive;
 		},
-		template: "<div class='noteBox' ng-click='toggleActive()' ng-class='{active: box.active}'>{{box.id}}</br>P:{{box.playing}}</br>A:{{box.active}}</div>"
+		template: "<div class='noteBox' ng-click='toggleActive()' ng-class='{active: box.active}'></div>"
 	}
 });
 
