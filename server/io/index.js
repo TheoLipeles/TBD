@@ -14,7 +14,11 @@ module.exports = function (server) {
         socket.on("noteAdded", function(note) {
             socket.broadcast.emit("addNote", note);
     	});
+    	socket.on("stuffChanged", function (data) {
+    		socket.broadcast.emit("changedStuff", data);
+    	});
     });
+
 
     
     

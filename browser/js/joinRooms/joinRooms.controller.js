@@ -10,6 +10,14 @@ app.controller('RoomCtrl', function($scope,$interval, SequenceFactory, $statePar
 		$rootScope.$digest();
 	});
 
+
+	socket.on("changedStuff", function(data) {
+		// synth uiEnvelope
+		console.log("stuffChanged");
+		SequenceFactory.updateSynth(data);
+		$scope.synth = data;
+	});
+
 	HomeFactory.joinRoom($stateParams.roomName)
 		.then(function(room) {
 			console.log("room joined");
@@ -75,10 +83,13 @@ app.controller('RoomCtrl', function($scope,$interval, SequenceFactory, $statePar
 		// console.log('SYNTH', $scope.uiEnvelope);
 		console.log('SYNTH', $scope.synth);
 		SequenceFactory.updateSynth($scope.synth);
+		socket.emit("stuffChanged", $scope.synth);
+		console.log("stuffChanged");
 	};
 
 	$scope.updateWet = function(effect) {
 		SequenceFactory.effectsWetness(effect, $scope.pingPong / 1000 );
+		// socket.emit("stuffChanged", {synth: $scope.synth, uiEnvelope: $scope.uiEnvelope});
 	};
 
 	$scope.chorus = {
