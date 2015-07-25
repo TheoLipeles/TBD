@@ -5,6 +5,8 @@ var chalk = require('chalk');
 // mongoose establishing a connection to a MongoDB database.
 var startDb = require('./db');
 
+var initializeRooms = require("./db/models/rooms.js").intializeRooms;
+
 // Create a node server instance! cOoL!
 var server = require('http').createServer();
 
@@ -23,6 +25,8 @@ var startServer = function () {
     });
 
 };
+
+initializeRooms();
 
 startDb.then(createApplication).then(startServer).catch(function (err) {
     console.error('Initialization error:', chalk.red(err.message));

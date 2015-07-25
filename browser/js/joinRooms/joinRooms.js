@@ -1,6 +1,11 @@
-app.config(function ($stateProvider) {
-    $stateProvider.state('joinRoom', {
-        url: '/joinRoom',
-        templateUrl: 'js/joinRooms/joinRooms.html'
-    });
+app.controller('JoinRoomCtrl', function ($scope, HomeFactory, $stateParams){
+	$scope.room = {};
+	console.log($scope.room);
+	HomeFactory.joinRoom($stateParams.roomName)
+		.then(function (room) {
+			$scope.room = room;
+			console.log($scope.room)
+			return $scope.room
+		});
+
 });
