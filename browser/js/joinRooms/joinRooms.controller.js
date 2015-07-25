@@ -12,6 +12,7 @@ app.controller('RoomCtrl', function($scope,$interval, SequenceFactory, $statePar
 
 	HomeFactory.joinRoom($stateParams.roomName)
 		.then(function(room) {
+			console.log("room joined");
 			$scope.sequencer.sequence = room.sequence;
 			SequenceFactory.syncSequence(room.sequence);
 		});
@@ -44,7 +45,7 @@ app.controller('RoomCtrl', function($scope,$interval, SequenceFactory, $statePar
 			"decay" : 100,
 			"sustain" : 900,
 			"release" : 10
-	}
+	};
 
 	$scope.pingPong = 500;
 
