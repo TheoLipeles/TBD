@@ -14,8 +14,9 @@ app.controller('RoomCtrl', function($scope,$interval, SequenceFactory, $statePar
 	socket.on("changedStuff", function(data) {
 		// synth uiEnvelope
 		console.log("stuffChanged");
-		SequenceFactory.updateSynth(data);
-		$scope.synth = data;
+		SequenceFactory.updateSynth(data.synth);
+		$scope.synth = data.synth;
+		$scope.synth.envelope[type] = data.uiEnvelope[type] / 1000;
 	});
 
 	HomeFactory.joinRoom($stateParams.roomName)
@@ -74,6 +75,7 @@ app.controller('RoomCtrl', function($scope,$interval, SequenceFactory, $statePar
 		}
 	};
 	$scope.updateEnv = function(type) {
+		socket.emit("stuffChanged", {synth: $scope.synth, envelope: $scope.uiEnvelope});
 		console.log('TYPE', $scope.uiEnvelope[type]);
 		$scope.synth.envelope[type] = $scope.uiEnvelope[type] / 1000;
 		// SequenceFactory.updateSynth($scope.synth);
