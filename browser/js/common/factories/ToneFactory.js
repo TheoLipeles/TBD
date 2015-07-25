@@ -36,10 +36,10 @@ app.factory('SequenceFactory', function () {
 				var arrIndex = (parseInt(pArr[0])*4) + (parseInt(pArr[1]));
 				var prevIndex = arrIndex - 1;
 				//add class
-				if(!prevIndex) {
+				if(prevIndex === -1) {
 					prevIndex = 15;
 				}
-				var prevEl = document.getElementById(arrIndex)
+				//update DOM
 				document.getElementById(prevIndex).classList.remove('live');
 				document.getElementById(arrIndex).classList.add('live');
 				//play the array of notes at the correct index of sequence
