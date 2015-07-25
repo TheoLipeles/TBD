@@ -5,12 +5,12 @@ app.factory('SequenceFactory', function () {
 	}
 	console.log(sequence);
 	var nTon = {
-		9: "A3",
+		9: "A2",
 		8: "C3",
 		7: "D3",
 		6: "E3",
 		5: "G3",
-		4: "A4",
+		4: "A3",
 		3: "C4",
 		2: "D4",
 		1: "E4",
@@ -35,8 +35,8 @@ app.factory('SequenceFactory', function () {
 				var pArr = Tone.Transport.position.split(':');
 				var arrIndex = (parseInt(pArr[0])*4) + (parseInt(pArr[1]));
 				//add class
-				// document.getElementById(arrIndex - 1).removeClass('active');
-				// document.getElementById(arrIndex).addClass('active');
+				document.getElementById(arrIndex - 1).removeClass('live');
+				document.getElementById(arrIndex).addClass('live');
 				//play the array of notes at the correct index of sequence
 				poly.triggerAttackRelease(sequence[arrIndex], "4n");
 				console.log(Tone.Transport.position, sequence[arrIndex]);
