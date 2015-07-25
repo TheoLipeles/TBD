@@ -1,11 +1,22 @@
 'use strict';
 window.app = angular.module('FullstackGeneratedApp', ['ui.router', 'ui.bootstrap', 'fsaPreBuilt']);
 
-app.config(function ($urlRouterProvider, $locationProvider) {
+app.config(function ($urlRouterProvider, $locationProvider, $stateProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
     $locationProvider.html5Mode(true);
     // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
     $urlRouterProvider.otherwise('/');
+
+    $stateProvider.state('home', {
+        url: '/',
+        templateUrl: 'js/home/home.html',
+        controller: 'MainCtrl'
+    })
+    .state('joinRoom', {
+        url: '/rooms/:roomName',
+        templateUrl: 'js/joinRooms/joinRooms.html', 
+        controller: 'JoinRoomCtrl'
+    });
 });
 
 // This app.run is for controlling access to specific states.
