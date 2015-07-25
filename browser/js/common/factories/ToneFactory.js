@@ -3,7 +3,13 @@ app.factory('SequenceFactory', function () {
 	for(var i = sequence.length - 1; i >= 0; i --) {
 		sequence[i] = [];
 	}
-	console.log(sequence);
+	var poly = new Tone.PolySynth(6, Tone.MonoSynth);
+
+	var pingPong = new Tone.PingPongDelay('1m', 0.2);
+	var chorus = new Tone.Chorus(4, 0.25, 0.7).toMaster();
+	poly.connect(pingPong);
+	pingPong.connect(chorus);
+
 	var nTon = {
 		13:"C0",
 		12:"D0",
@@ -30,9 +36,6 @@ app.factory('SequenceFactory', function () {
 			Tone.Transport.loopEnd = "4:0:0";
 			Tone.Transport.loop = true;
 
-			//create polysynth
-			var poly = new Tone.PolySynth(6, Tone.MonoSynth).toMaster();
-
 			//set interval to loop over every quarternote and play correct sounds
 			Tone.Transport.setInterval(function () {
 				//get position to figure out what sub Array to play
@@ -47,6 +50,8 @@ app.factory('SequenceFactory', function () {
 				document.getElementById(prevIndex).classList.remove('live');
 				document.getElementById(arrIndex).classList.add('live');
 				//play the array of notes at the correct index of sequence
+				// poly.triggerRelease(sequence[prevIndex]);
+				// poly.triggerAttack(sequence[arrIndex]);
 				poly.triggerAttackRelease(sequence[arrIndex], "4n");
 				console.log(Tone.Transport.position, sequence[arrIndex]);
 			}, "4n");
@@ -70,6 +75,14 @@ app.factory('SequenceFactory', function () {
 		},
 		stopSequence: function () {
 			Tone.Transport.stop();
+		},
+		updateSynth: function(obj) {
+			poly.set(obj);
+		},
+		effectsWetness: function(effect, value) {
+			if(effect === "pingPong") {
+				pingPong.wet.value = value;
+			}
 		}
 	}
 });
