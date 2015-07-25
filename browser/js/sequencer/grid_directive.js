@@ -25,7 +25,7 @@ app.controller('sequencerCtrl', function($scope, boxFactory,$interval, SequenceF
 	$scope.boxes = [];
 	for(var i = 0; i < 16; i++){
 		$scope.boxes[i] = [];
-		for (var j = 0; j < 10; j++){
+		for (var j = 0; j < 12; j++){
 			$scope.boxes[i].push({id: [i,j], active: false, playing: false})
 		}
 	}
@@ -77,7 +77,6 @@ app.controller('sequencerCtrl', function($scope, boxFactory,$interval, SequenceF
 	}
 	$scope.updateSynth = function () {
 		// console.log('SYNTH', $scope.uiEnvelope);
-
 		console.log('SYNTH', $scope.synth);
 		SequenceFactory.updateSynth($scope.synth);
 	}
