@@ -1,13 +1,13 @@
-<div ng-controller="sequencerCtrl">
+<div>
 	<div class="container">
 		<div class="innercontainer">
-			<div ng-repeat="column in boxes" id="{{$index}}" class="column">
-				<note-box ng-repeat="box in column"></note-box></div>
+			<div ng-repeat="column in sequencer.boxes" id="{{$index}}" class="column">
+				<div ng-repeat="box in column" class='noteBox' ng-click='sequencer.toggleActive(box)'>{{box.id}}</br>P:{{box.playing}}</br>A:{{box.active}}</div>
 			</div>
 		</div>
 	</div>
-	<button ng-click="play()">play</button>
-	<button ng-click="stop()">stop</button>
-	<button ng-click="init()">init</button>
-	<pre id="default-spacing">{{ boxes | json}}</pre>
+	<button ng-click="sequencer.play()">play</button>
+	<button ng-click="sequencer.stop()">stop</button>
+	<button ng-click="sequencer.init()">init</button>
+	<pre id="default-spacing">{{ sequencer.boxes | json}}</pre>
 </div>

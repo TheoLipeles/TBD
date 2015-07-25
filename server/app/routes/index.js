@@ -12,8 +12,7 @@ router.get('/', function(req, res) {
 router.get('/:roomName', function(req, res) {
 	var sent = false;
 	for (var room = 0; room < roomsModel.rooms.length; room++) {
-		if (roomsModel.rooms[room].name === req.params.roomName) {
-			console.log(roomsModel.rooms[room]);
+		if (roomsModel.rooms[room].name == req.params.roomName) {
 			res.send(roomsModel.rooms[room]);
 			sent = true;
 		}

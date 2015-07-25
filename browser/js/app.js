@@ -1,5 +1,7 @@
 'use strict';
 window.app = angular.module('FullstackGeneratedApp', ['ui.router', 'ui.bootstrap', 'fsaPreBuilt']);
+var socket = io();
+
 
 app.config(function ($urlRouterProvider, $locationProvider, $stateProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
@@ -15,10 +17,13 @@ app.config(function ($urlRouterProvider, $locationProvider, $stateProvider) {
     .state('joinRoom', {
         url: '/rooms/:roomName',
         templateUrl: 'js/joinRooms/joinRooms.html', 
-        controller: 'JoinRoomCtrl'
+        controller: 'RoomCtrl'
     });
 });
-
+socket.on('connect', function () {
+    
+    console.log('I have made a persistent two-way connection to the server!');
+});
 // This app.run is for controlling access to specific states.
 app.run(function ($rootScope, AuthService, $state) {
 

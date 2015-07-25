@@ -7,12 +7,13 @@ app.factory('HomeFactory', function ($http) {
 				});
 			},
 		joinRoom: function (roomName){
-			console.log(roomName)
 			return $http.get('/rooms/' + roomName)
 				.then(function (res) {
-					console.log(res)
 					return res.data;
 				});
 		}
+		// getRoomBox: function (roomName, id) {
+		// 	return $http.post('/rooms/' + roomName + "/boxes", id);
+		// }
 	};
 });

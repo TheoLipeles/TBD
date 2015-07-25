@@ -1,9 +1,9 @@
-app.factory('SequenceFactory', function () {
-	var sequence = new Array(16);
-	for(var i = sequence.length - 1; i >= 0; i --) {
-		sequence[i] = [];
-	}
-	console.log(sequence);
+	app.factory('SequenceFactory', function (HomeFactory, $stateParams) {
+	var sequence;
+	HomeFactory.joinRoom($stateParams.roomName).then(function(room) {
+		sequence = room.sequence;
+	});
+
 	var nTon = {
 		9: "A2",
 		8: "C3",
@@ -15,7 +15,7 @@ app.factory('SequenceFactory', function () {
 		2: "D4",
 		1: "E4",
 		0: "G4"
-	}
+	};
 	function mapNumberToNote (n) {
 		return nTon[n];
 	}
@@ -39,8 +39,7 @@ app.factory('SequenceFactory', function () {
 				if(!prevIndex) {
 					prevIndex = 15;
 				}
-				var prevEl = document.getElementById(arrIndex)
-				document.getElementById(prevIndex).classList.remove('live');
+				var prevEl = document.getElementById(arrIndex);
 				document.getElementById(arrIndex).classList.add('live');
 				//play the array of notes at the correct index of sequence
 				poly.triggerAttackRelease(sequence[arrIndex], "4n");
@@ -50,7 +49,11 @@ app.factory('SequenceFactory', function () {
 			return poly;
 		},
 		addNoteToSequence: function(seqIndex, noteNum) {
-			sequence[seqIndex].push(mapNumberToNote(noteNum));
+			var note = mapNumberToNote(noteNum);
+			console.log(seqIndex);
+			seqIndex = parseInt(seqIndex);
+			console.log(typeof(seqIndex), seqIndex);
+			sequence[seqIndex].push(note);
 		},
 		removeNoteFromSequence: function (seqIndex, noteNum) {
 			for(var i = 0; i < sequence[seqIndex].length; i++) {
@@ -66,6 +69,12 @@ app.factory('SequenceFactory', function () {
 		},
 		stopSequence: function () {
 			Tone.Transport.stop();
+		},
+		syncSequence: function(sequence) {
+			Tone.sequence = sequence;
+		},
+		mapNumberToNote: function(n) {
+			return mapNumberToNote(n);
 		}
-	}
+	};
 });
