@@ -1,11 +1,10 @@
 <section id="home">
-	<fullstack-logo></fullstack-logo>
 <!-- 	<button class="room-choice" ui-sref="joinRoom">Join Room</button><br> -->
 <!-- 	<button class="room-choice" ui-sref="createRoom">Create Room</button> -->
+	<img src="js/home/splash.jpg" id="header"></img>
 
 
-
-	<div>
+	<div id="buttons">
 		<div ng-repeat="room in rooms" ui-sref="joinRoom({roomName: room.name})" class="aRoom"><a class="roomNameLink">{{room.name}}</a></div>
 		<div ui-sref="solo" class="aRoom">Solo</div>
 	</div>
