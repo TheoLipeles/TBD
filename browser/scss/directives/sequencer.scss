@@ -1,18 +1,21 @@
 .noteBox{
-    box-sizing: border-box;
+    box-sizing: padding-box;
     font-size: 10px;
     width: 60px;
     height: 45px;
     display: inline-block;
+    cursor: pointer;
     border: 1px solid black;
+    border-radius: 5px;
 }
 .column{
     width: 60px;
+    margin: 5px;
     display: inline-block;
 }
 .innercontainer{
-    width: 1000px;
-    margin: 0 auto;
+    width: 1300px;
+    margin: auto;
 }
 
 button {
@@ -20,9 +23,11 @@ button {
 }
 
 .live{
-    background: red;
+    border-top: 5px solid red;
+    border-bottom: 5px solid red;
+
 }
 
 .active{
-    background: blue;
+    background: red;
 }
