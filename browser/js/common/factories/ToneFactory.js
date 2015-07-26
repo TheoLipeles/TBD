@@ -1,5 +1,5 @@
 
-app.factory('SequenceFactory', function (HomeFactory, $stateParams) {
+app.factory('SequenceFactory', function (HomeFactory, $stateParams, $rootScope) {
 	var sequence = new Array(16);
 	HomeFactory.joinRoom($stateParams.roomName).then(function(room) {
 		sequence = room.sequence;

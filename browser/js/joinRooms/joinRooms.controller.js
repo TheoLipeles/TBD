@@ -3,6 +3,8 @@
 app.controller('RoomCtrl', function($scope,$interval, SequenceFactory, $stateParams, HomeFactory, $rootScope) {
 	$scope.sequencer = {};
 
+
+
 	socket.on("addNote", function(note) {
 		SequenceFactory.addNoteToSequence(note.id[0], note.id[1]);
 		console.log($scope.sequencer.boxes[note.id[0]][note.id[1]]);
@@ -14,9 +16,10 @@ app.controller('RoomCtrl', function($scope,$interval, SequenceFactory, $statePar
 	socket.on("changedStuff", function(data) {
 		// synth uiEnvelope
 		console.log(data);
-		SequenceFactory.updateSynth(data.synth);
 		$scope.synth = data.synth;
 		$scope.synth.envelope[type] = data.uiEnvelope[type] / 1000;
+		SequenceFactory.updateSynth(data.synth);
+		$rootScope.$apply();
 	});
 
 	HomeFactory.joinRoom($stateParams.roomName)

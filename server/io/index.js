@@ -15,6 +15,7 @@ module.exports = function (server) {
             socket.broadcast.emit("addNote", note);
     	});
     	socket.on("stuffChanged", function (data) {
+    		console.log("stuffChanged");
     		socket.broadcast.emit("changedStuff", data);
     	});
     });
