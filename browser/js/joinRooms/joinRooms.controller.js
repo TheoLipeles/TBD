@@ -85,7 +85,7 @@ app.controller('RoomCtrl', function($scope,$interval, SequenceFactory, $statePar
 		// console.log('SYNTH', $scope.uiEnvelope);
 		console.log('SYNTH', $scope.synth);
 		SequenceFactory.updateSynth($scope.synth);
-		socket.emit("stuffChanged", $scope.synth);
+		// socket.emit("stuffChanged", $scope.synth);
 		console.log("stuffChanged");
 	};
 
